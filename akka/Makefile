@@ -15,3 +15,7 @@ clean:
 .PHONY: run
 run: setup
 	@export JAVA_HOME=$$(cat .java_home) && mvn kalix:runAll
+
+.PHONY: deploy
+deploy: setup
+	@mvn deploy
