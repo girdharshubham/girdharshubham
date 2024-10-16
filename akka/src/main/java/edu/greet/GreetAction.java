@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Acl(allow = @Acl.Matcher(principal = Acl.Principal.INTERNET))
 public class GreetAction extends Action {
 
+  @GetMapping
+  public Action.Effect<Greeting> greet() {
+    return effects().reply(new Greeting("Hello, World"));
+  }
+
   @GetMapping("/{name}")
   public Action.Effect<Greeting> greet(@PathVariable String name) {
     if (name == null || name.isEmpty()) {
@@ -19,10 +24,4 @@ public class GreetAction extends Action {
     }
     return effects().reply(new Greeting("Hello, " + name));
   }
-
-  @GetMapping
-  public Action.Effect<Greeting> greet() {
-    return effects().reply(new Greeting("Hello, World"));
-  }
-
 }
