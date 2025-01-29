@@ -2,5 +2,6 @@
 .vscode
 target
 
+.idea
 effective-pom.xml
 .java_home
