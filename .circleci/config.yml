@@ -1,0 +1,39 @@
+version: 2.1
+
+orbs:
+  cloudsmith: cloudsmith/cloudsmith@1.0.5
+
+jobs:
+  cloudsmith:
+    docker:
+      - image: google/cloud-sdk:483.0.0-slim
+    environment:
+      PIP_BREAK_SYSTEM_PACKAGES: 1
+    steps:
+      - cloudsmith/install-cli
+      - run:
+          command: |
+            apt install jq -y
+      - run:
+          command: |
+            PATH=$PATH:/root/.local/bin
+            export CLOUDSMITH_API_KEY=$CLOUDSMITH_API_PASSWORD
+            REGISTRY=girdharshubham/repository
+            IMG_AVAILABILITY_CHECK=true
+            IMAGES="ubuntu"
+            for image in $IMAGES
+            do
+                img="${REGISTRY}/${image}:${KALIX_VERSION}"
+                echo "Checking ${img}"
+                if ! (cloudsmith list packages ${REGISTRY} --query "name:^${image}$ AND version:24.04" -Fjson | jq -e ".data | map(select(.name == \"${image}\")) | if length == 0 then error(\"\") else .[] | {name, tag: .tags.version[0]} end" >/dev/null 2>&1)
+                then
+                    echo "${img} is missing"
+                    IMG_AVAILABILITY_CHECK=false
+                fi
+            done
+            "${IMG_AVAILABILITY_CHECK}"
+
+workflows:
+  cloudsmith:
+    jobs:
+      - cloudsmith
