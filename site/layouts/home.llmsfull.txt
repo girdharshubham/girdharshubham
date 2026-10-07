@@ -7,7 +7,7 @@
 Website: {{ .Permalink }}
 Contact: {{ .Permalink }}#contact
 {{- range $k, $v := $p.links }}{{ with $v }}
-{{ index (dict "github" "GitHub" "linkedin" "LinkedIn") $k | default (title $k) }}: {{ . }}{{ end }}{{ end }}
+{{ index (dict "github" "GitHub" "linkedin" "LinkedIn" "booking" "Book a call") $k | default (title $k) }}: {{ . }}{{ end }}{{ end }}
 
 ## Summary
 

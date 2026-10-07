@@ -14,6 +14,11 @@
       {{ with $p.tagline }}<p class="lede lede-sub">{{ . }}</p>{{ end }}
       <div class="hero-actions">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
+        {{ with $p.links.booking }}
+        <a class="btn btn-ghost" href="{{ . }}" target="_blank" rel="noopener">
+          {{ partial "icon.html" "calendar" }}Book a call
+        </a>
+        {{ end }}
         {{ with $p.links.github }}
         <a class="btn btn-ghost" href="{{ . }}" target="_blank" rel="noopener">
           {{ partial "icon.html" "github" }}GitHub
@@ -129,6 +134,12 @@
       <p class="section-kicker">0{{ add $n 1 }} / Contact</p>
       <h2>{{ $h.contact | default "Let's talk" }}</h2>
       <p class="lede">{{ $p.contact.blurb }}</p>
+      {{ with $p.links.booking }}
+      <div class="contact-book">
+        <p>Rather talk it through? Grab a slot on my calendar.</p>
+        <a class="btn btn-ghost" href="{{ . }}" target="_blank" rel="noopener">{{ partial "icon.html" "calendar" }}Book a call</a>
+      </div>
+      {{ end }}
       <ul class="contact-links">
         {{ with $p.links.github }}<li><a href="{{ . }}" target="_blank" rel="noopener">GitHub</a></li>{{ end }}
         {{ with $p.links.linkedin }}<li><a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a></li>{{ end }}

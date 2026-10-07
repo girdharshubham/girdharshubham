@@ -136,7 +136,7 @@ ul { margin: 0; padding: 0; }
 .btn-primary:hover { opacity: 0.9; }
 .btn-ghost { border-color: var(--border); background: var(--surface); color: var(--text); }
 .btn-ghost:hover { border-color: var(--muted); }
-.btn svg { width: 18px; height: 18px; }
+.btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 72px 0 56px; }
@@ -325,6 +325,11 @@ ul { margin: 0; padding: 0; }
 
 /* Contact */
 .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start; }
+.contact-book {
+  margin-top: 28px; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface-2); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+}
+.contact-book p { color: var(--text); font-weight: 500; }
 .contact-links { list-style: none; margin-top: 24px; }
 .contact-links a { color: var(--accent); text-decoration: none; font-weight: 500; }
 .contact-links a:hover { text-decoration: underline; }

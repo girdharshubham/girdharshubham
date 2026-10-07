@@ -1,7 +1,7 @@
 {{- /* schema.org data: lets search engines and LLMs read the profile as structured facts */ -}}
 {{- $home := site.Home -}}
 {{- $sameAs := slice -}}
-{{- range $k, $v := $home.Params.links }}{{ with $v }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end -}}
+{{- range $k, $v := $home.Params.links }}{{ if and $v (ne $k "booking") }}{{ $sameAs = $sameAs | append $v }}{{ end }}{{ end -}}
 {{- $person := dict
     "@type" "Person"
     "name" site.Title

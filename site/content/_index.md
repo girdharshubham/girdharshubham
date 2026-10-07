@@ -20,6 +20,7 @@ tagline: Hand me an ambiguous, high-stakes problem and a whiteboard, and I'm a h
 links:
   github: https://github.com/girdharshubham
   linkedin: ""        # paste your LinkedIn URL to show it
+  booking: https://calendar.app.google/E2K2oYqnv4HsNaan8   # Google Calendar booking page; clear to hide the buttons
 
 stats:
   - value: 7+

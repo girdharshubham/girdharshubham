@@ -10,7 +10,7 @@
 - Status: {{ cond $p.openToWork "Open to new roles" "Not actively looking" }}
 - Contact: use the form at {{ .Permalink }}#contact
 {{- range $k, $v := $p.links }}{{ with $v }}
-- {{ index (dict "github" "GitHub" "linkedin" "LinkedIn") $k | default (title $k) }}: {{ . }}{{ end }}{{ end }}
+- {{ index (dict "github" "GitHub" "linkedin" "LinkedIn" "booking" "Book a call") $k | default (title $k) }}: {{ . }}{{ end }}{{ end }}
 
 ## Profile
 

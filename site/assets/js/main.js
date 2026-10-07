@@ -200,6 +200,7 @@
           ["uptime", "time since my first job in tech"],
           ["theme dark|light", "switch the site theme"],
           ["contact", "open the contact form"],
+          ["book", "pick a time for a call"],
           ["clear, exit", ""]
         ]) + '\n\n<span class="dim">There may be a few undocumented ones.</span>';
       },
@@ -247,6 +248,12 @@
         return "theme." + t + " configured";
       },
       contact: function () { goContact(); return "Opening the contact form..."; },
+      book: function () {
+        var url = D.links && D.links.booking;
+        if (!url) return '<span class="dim">No booking link yet. Try </span><span class="cmd">contact</span>';
+        window.open(url, "_blank", "noopener");
+        return "Opening my calendar in a new tab... " + link(url, "(or click here)");
+      },
       sudo: function (args) {
         if (args.join(" ") === "hire-me") {
           setTimeout(goContact, 1200);
