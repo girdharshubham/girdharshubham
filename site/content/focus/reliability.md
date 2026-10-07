@@ -1,5 +1,5 @@
 ---
-title: Reliability & observability
+title: Reliability and observability
 weight: 3
 icon: pulse
 tags: [OpenTelemetry, Prometheus, Grafana, mTLS / PKI]

@@ -40,6 +40,9 @@ Tools: {{ delimit . ", " }}
 {{ .RawContent | strings.TrimSpace | replaceRE `(?m)^(#{1,4}) ` "#$1 " }}
 {{ end }}
 
+{{ with $p.references }}
+References: {{ . }}
+{{ end }}
 ## Open source
 {{ range (site.GetPage "/open-source").Pages.ByWeight }}
 - [{{ .Title }}]({{ .Params.link }}): {{ .RawContent | strings.TrimSpace }}

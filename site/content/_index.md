@@ -1,7 +1,7 @@
 ---
 # Everything on the home page that isn't in another folder lives here.
 title: Shubham Girdhar
-role: Senior Platform & Site Reliability Engineer
+role: Senior Platform and Site Reliability Engineer
 description: Senior platform and site reliability engineer. Multi-cloud control planes on Crossplane, GPU infrastructure and LLM serving on Kubernetes.
 location: Remote
 
@@ -19,12 +19,12 @@ tagline: Hand me an ambiguous, high-stakes problem and a whiteboard, and I'm a h
 
 links:
   github: https://github.com/girdharshubham
-  linkedin: ""        # paste your LinkedIn URL to show it
+  linkedin: https://www.linkedin.com/in/girdharshubham/
   booking: https://calendar.app.google/E2K2oYqnv4HsNaan8   # Google Calendar booking page; clear to hide the buttons
 
 stats:
   - value: 7+
-    label: Years in platform & SRE
+    label: Years in platform and SRE
   - value: 40+
     label: Platform deployments at my current job
   - value: "3"
@@ -39,6 +39,9 @@ manifest:
   clouds: [aws, gcp, azure]
   focus: [llm-serving-and-training-infra, multi-cloud-control-planes, kubernetes-operators]
   languages: [go, python, scala, java]
+
+# Shown under the experience section. Markdown links work.
+references: Available upon request. Some endorsements can be found on my [LinkedIn page](https://www.linkedin.com/in/girdharshubham/).
 
 # Section headings on the home page.
 headings:

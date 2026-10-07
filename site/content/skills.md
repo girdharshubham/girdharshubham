@@ -18,7 +18,7 @@ build: { render: never, list: never }
 - Gateway API Inference Extension
 - LoRA serving
 
-## Platform & SRE
+## Platform and SRE
 
 - Kubernetes
 - Operators
@@ -38,7 +38,7 @@ build: { render: never, list: never }
 - GCP
 - Azure
 
-## Observability & security
+## Observability and security
 
 - OpenTelemetry
 - Prometheus
@@ -64,7 +64,7 @@ build: { render: never, list: never }
 - Netty
 - Vert.x
 
-## Data & messaging
+## Data and messaging
 
 - Kafka
 - Cassandra

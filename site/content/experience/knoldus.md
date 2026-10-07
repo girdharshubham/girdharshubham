@@ -1,5 +1,5 @@
 ---
-title: Software Consultant, DevOps & Scala
+title: Software Consultant, DevOps and Scala
 company: Knoldus
 location: India
 start: 2019-01

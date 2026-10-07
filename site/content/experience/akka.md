@@ -6,7 +6,7 @@ start: 2023-04
 # end: leave out while you still work here
 ---
 
-### Akka Optimize (AI inference & training)
+### Akka Optimize (AI inference and training)
 
 - Own the platform side of Akka's AI inference and fine-tuning offering, taking it from proof of concept to production.
 - Architected multi-tenant LLM serving as a native platform capability, managed end to end from the Akka CLI. Wrote the Go operators behind it (Kubernetes DRA, vLLM) and wired agentgateway's external-processing hook into the gateway router.
