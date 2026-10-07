@@ -52,14 +52,18 @@ The site publishes machine-readable copies of itself, generated from the same Ma
 
 `AGENTS.md` (also loaded through `CLAUDE.md`) tells coding assistants how the repo is laid out.
 
-## Contact form to Proton Mail
+## Contact form to hello@girdharshubham.com
 
 GitHub Pages can't send email, so the form posts to [Web3Forms](https://web3forms.com)
-(free, 250 messages a month), which forwards to your inbox. Your address never appears on the site.
+(free, 250 messages a month), which emails each message to the address its access key was created with.
+That address never appears on the site.
 
-1. At https://web3forms.com, enter your Proton address and create an access key.
-2. Paste the key into `contact.web3formsKey` in `content/_index.md`.
-3. After deploying, send yourself a test message. Check Proton's spam folder the first time.
+1. Make `hello@girdharshubham.com` receive mail: either add the domain to Proton (paid plans;
+   use Proton's MX/SPF/DKIM records in Hostinger DNS) or create a Hostinger email forwarder from
+   `hello@` to your Proton inbox.
+2. At https://web3forms.com, create an access key for `hello@girdharshubham.com`.
+3. Paste the key into `contact.web3formsKey` in `content/_index.md` and push.
+4. Send yourself a test message from the live site. Check spam the first time.
 
 The key is safe to publish; it only lets people send mail *to* you.
 

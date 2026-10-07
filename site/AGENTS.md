@@ -36,7 +36,7 @@ Rules:
 - Plain ASCII punctuation only in copy: no em/en dashes, curly quotes, ellipsis or arrow characters, no
   middle-dot separators (use commas, colons, periods or " / "). Hugo's typographer is disabled for this.
 - Never put the phone number, personal email, or the Proton address on the site. The contact form
-  (Web3Forms) is the only contact channel.
+  (Web3Forms, delivering to hello@girdharshubham.com) is the only contact channel.
 - Don't name employers' customers or disclose deal/revenue figures. Describe them generically.
 - Keep it build-free for the editor: no Node, no npm, no Hugo modules.
 - After changes run `mise exec -- hugo --gc` and make sure there are no WARN/ERROR lines.
