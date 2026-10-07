@@ -368,6 +368,10 @@
       return;
     }
     if (data.botcheck) return; // honeypot ticked: silently drop
+    if (form.querySelector(".h-captcha") && !data["h-captcha-response"]) {
+      setStatus("Please tick the \"I am human\" box first.", "err");
+      return;
+    }
     delete data.botcheck;
     data.replyto = data.email; // so hitting "Reply" in Proton answers the sender
 
@@ -395,6 +399,7 @@
         setStatus("Network error. Please try again in a moment.", "err");
       })
       .finally(function () {
+        if (window.hcaptcha) { try { window.hcaptcha.reset(); } catch (e) {} } // a token works only once
         button.disabled = false;
         label.textContent = "Send message";
       });

@@ -351,6 +351,7 @@ ul { margin: 0; padding: 0; }
 .field.invalid input, .field.invalid textarea { border-color: var(--danger); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
+.h-captcha { min-height: 78px; } /* reserve the widget's height so the form doesn't jump */
 .btn-submit { justify-content: center; width: 100%; padding: 14px 20px; }
 .btn-submit[disabled] { opacity: 0.6; cursor: progress; }
 
