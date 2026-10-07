@@ -3,7 +3,7 @@
   <input type="hidden" name="access_key" value="{{ . }}">
   <input type="hidden" name="subject" value="New message from your portfolio">
   <input type="hidden" name="from_name" value="Portfolio contact form">
-  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <input type="checkbox" name="botcheck" hidden>
   <div class="field">
     <label for="name">Name</label>
     <input id="name" name="name" type="text" autocomplete="name" required maxlength="120">
@@ -20,13 +20,9 @@
     <label for="message">Message</label>
     <textarea id="message" name="message" rows="6" required maxlength="5000"></textarea>
   </div>
-  {{- /* hCaptcha, required by the Web3Forms form settings. Web3Forms' loader supplies the site key. */}}
+  {{- /* hCaptcha, required by the Web3Forms form settings. assets/js/main.js loads Web3Forms'
+         loader (which supplies the site key) only when the visitor nears or uses the form. */}}
   <div class="h-captcha" data-captcha="true"></div>
-  <script>
-    // Match the captcha to the current theme before hCaptcha renders it
-    document.querySelector(".h-captcha").dataset.theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-  </script>
-  <script src="https://web3forms.com/client/script.js" async defer></script>
   <button class="btn btn-primary btn-submit" type="submit"><span class="btn-label">Send message</span></button>
   <p class="form-status" role="status" aria-live="polite"></p>
 </form>

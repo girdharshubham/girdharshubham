@@ -335,6 +335,30 @@
   /* ---------- Contact form (Web3Forms) ---------- */
   var form = document.querySelector(".contact-form");
   if (!form) return;
+  // Load hCaptcha (via Web3Forms' loader) only when the form is close to view or touched,
+  // so visitors who never use the form don't download it.
+  var captcha = form.querySelector(".h-captcha"), captchaLoaded = false;
+  function loadCaptcha() {
+    if (!captcha || captchaLoaded) return;
+    captchaLoaded = true;
+    captcha.dataset.theme = currentTheme(); // hCaptcha reads this when it renders
+    var s = document.createElement("script");
+    s.src = "https://web3forms.com/client/script.js";
+    s.async = true;
+    document.body.appendChild(s);
+  }
+  if (captcha) {
+    form.addEventListener("focusin", loadCaptcha, { once: true });
+    if ("IntersectionObserver" in window) {
+      var captchaObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { captchaObserver.disconnect(); loadCaptcha(); }
+      }, { rootMargin: "600px 0px" });
+      captchaObserver.observe(form);
+    } else {
+      loadCaptcha();
+    }
+  }
+
   var status = form.querySelector(".form-status");
   var button = form.querySelector(".btn-submit");
   var label = button.querySelector(".btn-label");
@@ -375,7 +399,8 @@
       return;
     }
     if (data.botcheck) return; // honeypot ticked: silently drop
-    if (form.querySelector(".h-captcha") && !data["h-captcha-response"]) {
+    if (captcha && !data["h-captcha-response"]) {
+      loadCaptcha();
       setStatus("Please tick the \u201cI am human\u201d box first.", "err");
       return;
     }

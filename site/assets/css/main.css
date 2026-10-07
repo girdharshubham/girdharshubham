@@ -10,7 +10,7 @@
   --accent: #2f54eb;
   --accent-soft: rgba(47, 84, 235, 0.08);
   --accent-text: #ffffff;
-  --ok: #16a34a;
+  --ok: #15803d;
   --code-key: #9a3412;
   --code-str: #1d4ed8;
   --danger: #b91c1c;
@@ -319,7 +319,7 @@ ul { margin: 0; padding: 0; }
 
 /* Skills: rendered from skills.md — each "##" heading sits beside its bullet list */
 .skills { display: grid; grid-template-columns: 240px 1fr; gap: 24px 40px; align-items: start; }
-.skills h2 { font-size: 16px; font-weight: 600; letter-spacing: 0; padding-top: 4px; }
+.skills h3 { font-size: 16px; font-weight: 600; letter-spacing: 0; padding-top: 4px; }
 .skills ul { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
 .skills li {
   font-family: var(--font-mono); font-size: 12.5px;
@@ -362,7 +362,6 @@ ul { margin: 0; padding: 0; }
   outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
 }
 .field.invalid input, .field.invalid textarea { border-color: var(--danger); }
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .h-captcha { min-height: 78px; } /* reserve the widget's height so the form doesn't jump */
 .btn-submit { justify-content: center; width: 100%; padding: 14px 20px; }

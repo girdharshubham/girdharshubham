@@ -32,6 +32,11 @@ Easter eggs (keep them subtle): hero card toggles profile.yaml / profile.schema.
 uptime since the first job in the footer; DevTools console greeting; CrashLoopBackOff 404 (`layouts/404.html`);
 blinking cursor, stat count-up. All motion respects prefers-reduced-motion.
 
+Standards (checked 2026-10-08): W3C HTML and CSS validators clean, axe-core WCAG 2.2 AA clean in both
+themes, all links resolve. Keep it that way: `layouts/_markup/render-heading.html` renders Markdown headings
+in experience/focus/open-source/skills one level deeper so the page outline stays correct; the 404 page and
+empty sections are `noindex` and left out of `layouts/sitemap.xml`; hCaptcha is lazy-loaded by main.js.
+
 Rules:
 - Fonts: IBM Plex Sans and IBM Plex Mono (a serif/Practical Typography restyle was tried and rejected).
   Curly quotes and apostrophes: type plain ' and " in Markdown; Hugo's typographer curls them

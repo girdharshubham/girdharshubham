@@ -7,7 +7,11 @@
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ site.Title }}">
 <meta name="theme-color" content="#ffffff">
+{{- if or (eq .Kind "404") (and (eq .Kind "section") (not .Pages)) }}
+<meta name="robots" content="noindex">
+{{- else }}
 <link rel="canonical" href="{{ .Permalink }}">
+{{- end }}
 
 <meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
 <meta property="og:title" content="{{ $title }}">

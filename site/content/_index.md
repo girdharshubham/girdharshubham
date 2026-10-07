@@ -58,4 +58,4 @@ contact:
   web3formsKey: bd627911-46d7-4ac3-b483-29963a75c6be
 ---
 
-Hi! I'm Shubham, a platform and site reliability engineer who has spent 7+ years making AWS, GCP and Azure behave. At Akka I led the redesign of our control plane on Crossplane, which now serves enterprise customers in 40+ regions. I also own the platform side of our AI inference and fine-tuning product, and got to take it from a scrappy proof of concept all the way to production.
+Hi! I'm Shubham, a platform and site reliability engineer who has spent 7+ years making AWS, GCP and Azure behave. At Akka I led the redesign of our control plane on Crossplane, which now runs 40+ platform deployments for enterprise customers. I also own the platform side of our AI inference and fine-tuning product, and got to take it from a scrappy proof of concept all the way to production.

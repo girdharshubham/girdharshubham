@@ -1,0 +1,9 @@
+{{- /* Markdown headings inside jobs, focus cards, open-source entries and skills sit under an
+       existing heading on the home page, so render them one level deeper (## becomes h3, ### h4).
+       Blog posts are unchanged. */ -}}
+{{- $nested := or (in (slice "experience" "focus" "open-source") .Page.Section) (eq .Page.Path "/skills") -}}
+{{- if $nested -}}
+<h{{ add .Level 1 }}>{{ .Text }}</h{{ add .Level 1 }}>
+{{- else -}}
+<h{{ .Level }} id="{{ .Anchor }}">{{ .Text }}</h{{ .Level }}>
+{{- end -}}

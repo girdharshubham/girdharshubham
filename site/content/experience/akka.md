@@ -17,7 +17,7 @@ start: 2023-04
 ### Akka Platform
 
 - Led the redesign of the platform from Terraform to Crossplane, with composite cross-cloud APIs that unlocked sales to several large enterprise customers in finance, healthcare and aviation.
-- Operate the multi-cloud control plane across 40+ regions on AWS, Azure and GCP, including a 22-region footprint for a single customer spanning Asia, Canada and the US.
+- Operate the multi-cloud control plane behind 40+ platform deployments on AWS, Azure and GCP, including a 22-region footprint for a single customer spanning Asia, Canada and the US.
 - Own tenant onboarding: CMEK on GCP, Cilium networking, federation-plane permissions and customer-specific isolation.
 - Designed a cloud-agnostic zero-trust access gateway centralizing authentication, RBAC and audit logging.
 - Drove infrastructure and observability cost optimization while rolling out Linkerd and Groundcover across all customer regions.
