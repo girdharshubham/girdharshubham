@@ -1,0 +1,28 @@
+{{- /* schema.org data: lets search engines and LLMs read the profile as structured facts */ -}}
+{{- $home := site.Home -}}
+{{- $sameAs := slice -}}
+{{- range $k, $v := $home.Params.links }}{{ with $v }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end -}}
+{{- $person := dict
+    "@type" "Person"
+    "name" site.Title
+    "jobTitle" $home.Params.role
+    "description" $home.Description
+    "url" $home.Permalink
+    "image" (($home.Params.avatar | default "") | absURL)
+    "sameAs" $sameAs
+    "knowsAbout" (append $home.Params.manifest.focus $home.Params.manifest.languages)
+-}}
+{{- $data := $person | merge (dict "@context" "https://schema.org") -}}
+{{- if .IsPage -}}
+  {{- $data = dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" .Title
+      "description" .Description
+      "datePublished" (.Date.Format "2006-01-02")
+      "dateModified" (.Lastmod.Format "2006-01-02")
+      "url" .Permalink
+      "author" $person
+  -}}
+{{- end }}
+<script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>

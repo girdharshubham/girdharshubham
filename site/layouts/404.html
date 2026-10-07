@@ -1,0 +1,25 @@
+{{ define "main" }}
+<section class="section page-top">
+  <div class="wrap narrow">
+    <p class="section-kicker">404</p>
+    <h1 class="page-title">This page is in CrashLoopBackOff</h1>
+    <figure class="manifest crash">
+      <div class="manifest-bar"><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><code class="crash-title">kubectl</code></div>
+<pre><code><span class="c">$</span> kubectl get pod <span class="crash-path">page</span>
+NAME          READY   STATUS             RESTARTS      AGE
+<span class="crash-name">page</span>   0/1     <span class="bad">CrashLoopBackOff</span>   4 (12s ago)   1m
+
+<span class="c">$</span> kubectl logs <span class="crash-name">page</span> --previous
+error: the page you requested does not exist (or was rolled back)</code></pre>
+    </figure>
+    <p class="lede">Nothing to see here. <a href="{{ site.Home.RelPermalink }}">Head back to the home page</a>, which is healthy.</p>
+  </div>
+</section>
+<script>
+  // Show the requested path in the fake kubectl output
+  (function () {
+    var name = (location.pathname.replace(/^\/|\/$/g, "").replace(/[^a-z0-9-]+/gi, "-").toLowerCase() || "page").slice(0, 40);
+    document.querySelectorAll(".crash-path, .crash-name").forEach(function (el) { el.textContent = name; });
+  })();
+</script>
+{{ end }}

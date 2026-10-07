@@ -1,0 +1,140 @@
+{{ define "main" }}
+{{- $p := .Params -}}
+{{- $posts := where site.RegularPages "Section" "blog" -}}
+{{- $h := $p.headings | default dict -}}
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">
+        {{- if $p.openToWork }}<span class="pulse" aria-hidden="true"></span>Open to new roles{{ else }}{{ $p.role }}{{ end }} / {{ $p.location -}}
+      </p>
+      <h1>{{ $p.headline | .RenderString }}</h1>
+      <div class="lede">{{ .Content }}</div>
+      {{ with $p.tagline }}<p class="lede lede-sub">{{ . }}</p>{{ end }}
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        {{ with $p.links.github }}
+        <a class="btn btn-ghost" href="{{ . }}" target="_blank" rel="noopener">
+          {{ partial "icon.html" "github" }}GitHub
+        </a>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ partial "manifest.html" . }}
+  </div>
+
+  {{ with $p.stats }}
+  <div class="wrap">
+    <dl class="stats">
+      {{ range . }}<div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}
+    </dl>
+  </div>
+  {{ end }}
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="section-kicker">01 / Focus</p>
+      <h2>{{ $h.focus | default "What I do best" }}</h2>
+    </header>
+    <div class="cards">
+      {{ range (site.GetPage "/focus").Pages.ByWeight }}
+      <article class="card">
+        <div class="card-icon">{{ partial "icon.html" .Params.icon }}</div>
+        <h3>{{ .Title }}</h3>
+        <div class="card-body">{{ .Content }}</div>
+        {{ with .Params.tags }}<ul class="tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="section-kicker">02 / Experience</p>
+      <h2>{{ $h.experience | default "Where I've worked" }}</h2>
+    </header>
+    <ol class="timeline">
+      {{ range partial "experience-pages.html" . }}
+      <li class="role">
+        <div class="role-meta">
+          <p class="role-dates">{{ partial "dates.html" . }}</p>
+          <p class="role-where">{{ .Params.location }}</p>
+        </div>
+        <div class="role-body">
+          <h3>{{ .Title }} <span class="at">at {{ .Params.company }}</span></h3>
+          <div class="role-content">{{ .Content }}</div>
+        </div>
+      </li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="open-source">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="section-kicker">03 / Open source</p>
+      <h2>{{ $h.openSource | default "Upstream contributions" }}</h2>
+    </header>
+    <div class="oss">
+      {{ range (site.GetPage "/open-source").Pages.ByWeight }}
+      <a class="oss-item" href="{{ .Params.link }}" target="_blank" rel="noopener">
+        <p class="oss-repo">{{ .Title }}</p>
+        <div>{{ .Content }}</div>
+        <span class="oss-arrow">{{ partial "icon.html" "external" }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ $n := 4 }}
+{{ with $posts }}
+<section class="section" id="writing">
+  <div class="wrap">
+    <header class="section-head section-head-row">
+      <div>
+        <p class="section-kicker">04 / Writing</p>
+        <h2>{{ $h.writing | default "Recent posts" }}</h2>
+      </div>
+      <a class="more" href="{{ "blog/" | relURL }}">All posts</a>
+    </header>
+    {{ partial "post-list.html" (first 3 .ByDate.Reverse) }}
+  </div>
+</section>
+{{ $n = 5 }}
+{{ end }}
+
+{{ with site.GetPage "/skills" }}
+<section class="section" id="skills">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="section-kicker">0{{ $n }} / Toolbox</p>
+      <h2>{{ .Title }}</h2>
+    </header>
+    <div class="skills">{{ .Content }}</div>
+  </div>
+</section>
+{{ end }}
+
+<section class="section section-contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="section-kicker">0{{ add $n 1 }} / Contact</p>
+      <h2>{{ $h.contact | default "Let's talk" }}</h2>
+      <p class="lede">{{ $p.contact.blurb }}</p>
+      <ul class="contact-links">
+        {{ with $p.links.github }}<li><a href="{{ . }}" target="_blank" rel="noopener">GitHub</a></li>{{ end }}
+        {{ with $p.links.linkedin }}<li><a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a></li>{{ end }}
+      </ul>
+    </div>
+    {{ partial "contact-form.html" $p.contact.web3formsKey }}
+  </div>
+</section>
+{{ end }}

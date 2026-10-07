@@ -1,0 +1,90 @@
+{{- /* Hero card: profile.yaml and its CRD, profile.schema.yaml. Values come from content/_index.md. */ -}}
+{{- $p := .Params -}}
+{{- $m := $p.manifest -}}
+{{- $phases := slice "OpenToWork" "Running" -}}
+<figure class="manifest" data-view="profile" aria-label="Profile summary as a Kubernetes-style manifest">
+  <div class="manifest-bar">
+    <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+    <div class="manifest-tabs" role="tablist" aria-label="Profile files">
+      <button type="button" role="tab" id="tab-profile" aria-controls="panel-profile" aria-selected="true" data-view="profile">profile.yaml</button>
+      <button type="button" role="tab" id="tab-schema" aria-controls="panel-schema" aria-selected="false" tabindex="-1" data-view="schema">profile.schema.yaml</button>
+    </div>
+  </div>
+  <div class="manifest-panels">
+<pre class="panel panel-profile" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile" title="Click to view the schema"><code><span class="k">apiVersion</span>: people.dev/v1
+<span class="k">kind</span>: Engineer
+<span class="k">metadata</span>:
+  <span class="k">name</span>: {{ urlize site.Title }}
+<span class="k">spec</span>:
+  <span class="k">role</span>: <span class="s">{{ $m.role | default $p.role }}</span>
+  <span class="k">experience</span>: <span class="s">{{ $m.experience }}</span>
+  <span class="k">clouds</span>: [{{ range $i, $c := $m.clouds }}{{ if $i }}, {{ end }}<span class="s">{{ $c }}</span>{{ end }}]
+  <span class="k">focus</span>:
+{{- range $m.focus }}
+    - <span class="s">{{ . }}</span>
+{{- end }}
+  <span class="k">languages</span>: [{{ range $i, $l := $m.languages }}{{ if $i }}, {{ end }}<span class="s">{{ $l }}</span>{{ end }}]
+<span class="k">status</span>:
+  <span class="k">phase</span>: <span class="ok">{{ cond $p.openToWork "OpenToWork" "Running" }}</span>
+  <span class="k">conditions</span>:
+    - <span class="k">type</span>: Ready
+      <span class="k">status</span>: <span class="ok">"True"</span>
+<span class="cursor" aria-hidden="true"></span></code></pre>
+<pre class="panel panel-schema" id="panel-schema" role="tabpanel" aria-labelledby="tab-schema" tabindex="0" title="Click to view the profile"><code><span class="c"># CRD for kind Engineer, validates profile.yaml</span>
+<span class="k">apiVersion</span>: apiextensions.k8s.io/v1
+<span class="k">kind</span>: CustomResourceDefinition
+<span class="k">metadata</span>:
+  <span class="k">name</span>: engineers.people.dev
+<span class="k">spec</span>:
+  <span class="k">group</span>: people.dev
+  <span class="k">scope</span>: Cluster
+  <span class="k">names</span>:
+    <span class="k">kind</span>: Engineer
+    <span class="k">plural</span>: engineers
+  <span class="k">versions</span>:
+  - <span class="k">name</span>: v1
+    <span class="k">served</span>: <span class="ok">true</span>
+    <span class="k">storage</span>: <span class="ok">true</span>
+    <span class="k">subresources</span>: { <span class="k">status</span>: {} }
+    <span class="k">schema</span>:
+      <span class="k">openAPIV3Schema</span>:
+        <span class="k">type</span>: object
+        <span class="k">properties</span>:
+          <span class="k">spec</span>:
+            <span class="k">type</span>: object
+            <span class="k">required</span>: [<span class="s">role</span>, <span class="s">experience</span>]
+            <span class="k">properties</span>:
+              <span class="k">role</span>:
+                <span class="k">type</span>: string
+              <span class="k">experience</span>:
+                <span class="k">type</span>: string
+                <span class="k">pattern</span>: <span class="s">'^\d+y\+?$'</span>
+              <span class="k">clouds</span>:
+                <span class="k">type</span>: array
+                <span class="k">items</span>:
+                  <span class="k">type</span>: string
+                  <span class="k">enum</span>: [{{ range $i, $c := $m.clouds }}{{ if $i }}, {{ end }}<span class="s">{{ $c }}</span>{{ end }}]
+              <span class="k">focus</span>:
+                <span class="k">type</span>: array
+                <span class="k">items</span>: { <span class="k">type</span>: string }
+              <span class="k">languages</span>:
+                <span class="k">type</span>: array
+                <span class="k">items</span>: { <span class="k">type</span>: string }
+          <span class="k">status</span>:
+            <span class="k">type</span>: object
+            <span class="k">properties</span>:
+              <span class="k">phase</span>:
+                <span class="k">type</span>: string
+                <span class="k">enum</span>: [{{ range $i, $ph := $phases }}{{ if $i }}, {{ end }}<span class="ok">{{ $ph }}</span>{{ end }}]
+              <span class="k">conditions</span>:
+                <span class="k">type</span>: array
+                <span class="k">items</span>:
+                  <span class="k">type</span>: object
+                  <span class="k">required</span>: [<span class="s">type</span>, <span class="s">status</span>]
+                  <span class="k">properties</span>:
+                    <span class="k">type</span>: { <span class="k">type</span>: string }
+                    <span class="k">status</span>:
+                      <span class="k">type</span>: string
+                      <span class="k">enum</span>: [<span class="s">"True"</span>, <span class="s">"False"</span>, <span class="s">Unknown</span>]</code></pre>
+  </div>
+</figure>

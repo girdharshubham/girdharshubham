@@ -1,0 +1,61 @@
+{{- $p := .Params -}}
+{{- $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse -}}
+# {{ site.Title }}
+
+{{ $p.role }}, {{ $p.location }}. {{ cond $p.openToWork "Open to new roles" "Not actively looking" }}
+
+Website: {{ .Permalink }}
+Contact: {{ .Permalink }}#contact
+{{- range $k, $v := $p.links }}{{ with $v }}
+{{ index (dict "github" "GitHub" "linkedin" "LinkedIn") $k | default (title $k) }}: {{ . }}{{ end }}{{ end }}
+
+## Summary
+
+{{ .RawContent | strings.TrimSpace }}
+
+{{ with $p.tagline }}{{ . }}{{ end }}
+
+{{- with $p.stats }}
+
+Highlights:
+{{ range . }}
+- {{ .label }}: {{ .value }}
+{{- end }}
+{{- end }}
+
+## Focus areas
+{{ range (site.GetPage "/focus").Pages.ByWeight }}
+### {{ .Title }}
+
+{{ .RawContent | strings.TrimSpace }}
+{{ with .Params.tags }}
+Tools: {{ delimit . ", " }}
+{{ end }}
+{{- end }}
+
+## Experience
+{{ range partial "experience-pages.html" . }}
+### {{ .Title }}, {{ .Params.company }} ({{ partial "dates.html" . }}, {{ .Params.location }})
+
+{{ .RawContent | strings.TrimSpace | replaceRE `(?m)^(#{1,4}) ` "#$1 " }}
+{{ end }}
+
+## Open source
+{{ range (site.GetPage "/open-source").Pages.ByWeight }}
+- [{{ .Title }}]({{ .Params.link }}): {{ .RawContent | strings.TrimSpace }}
+{{- end }}
+
+## Skills
+
+{{ with site.GetPage "/skills" }}{{ .RawContent | replaceRE `(?s)<!--.*?-->` "" | strings.TrimSpace | replaceRE `(?m)^(#{1,4}) ` "#$1 " }}{{ end }}
+{{- with $posts }}
+
+## Writing
+{{ range . }}
+### {{ .Title }}
+
+Published {{ .Date.Format "2006-01-02" }}: {{ .Permalink }}
+
+{{ .RawContent | strings.TrimSpace | replaceRE `(?m)^(#{1,4}) ` "###$1 " }}
+{{ end }}
+{{- end }}

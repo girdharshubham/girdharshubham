@@ -1,0 +1,36 @@
+baseURL = "https://girdharshubham.com/"
+locale = "en"
+title = "Shubham Girdhar"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[markup.highlight]
+  noClasses = false          # colors come from assets/css/syntax.css (light + dark)
+
+# ---- Machine-readable outputs for LLMs (https://llmstxt.org) ----
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  mediaType = "text/plain"
+  baseName = "llms-full"
+  isPlainText = true
+  notAlternative = true
+
+# Every blog post is also published as raw Markdown at /blog/<slug>/index.md
+[outputFormats.md]
+  mediaType = "text/markdown"
+  baseName = "index"
+  isPlainText = true
+
+[outputs]
+  home = ["html", "rss", "llms", "llmsfull"]
+  section = ["html", "rss"]
+  page = ["html", "md"]
+
+# Keep text exactly as typed: no automatic curly quotes, en/em dashes or ellipses.
+[markup.goldmark.extensions.typographer]
+  disable = true

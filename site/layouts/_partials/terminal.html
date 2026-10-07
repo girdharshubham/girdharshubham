@@ -1,0 +1,34 @@
+{{- /* Hidden terminal (press ` or the footer hint). Its answers come from the Markdown content. */ -}}
+{{- $home := site.Home -}}
+{{- $all := (site.GetPage "/experience").Pages -}}
+{{- $jobs := slice -}}
+{{- range partial "experience-pages.html" . }}
+  {{- $jobs = $jobs | append (dict "title" .Title "company" .Params.company "dates" (partial "dates.html" .)) }}
+{{- end -}}
+{{- $focus := slice -}}
+{{- range (site.GetPage "/focus").Pages.ByWeight }}{{ $focus = $focus | append .Title }}{{ end -}}
+{{- $oss := slice -}}
+{{- range (site.GetPage "/open-source").Pages.ByWeight }}{{ $oss = $oss | append (dict "repo" .Title "link" .Params.link) }}{{ end -}}
+{{- $posts := slice -}}
+{{- range first 5 (where site.RegularPages "Section" "blog").ByDate.Reverse }}
+  {{- $posts = $posts | append (dict "title" .Title "url" .RelPermalink "date" (.Date.Format "2006-01-02")) }}
+{{- end -}}
+{{- $host := (urls.Parse site.BaseURL).Host -}}
+{{- $data := dict
+  "name" site.Title "slug" (urlize site.Title) "role" $home.Params.role "location" $home.Params.location
+  "tagline" $home.Params.tagline "openToWork" $home.Params.openToWork "links" $home.Params.links
+  "manifest" $home.Params.manifest "since" (string (index (sort $all "Params.start") 0).Params.start)
+  "jobs" $jobs "focus" $focus "oss" $oss "posts" $posts "home" $home.RelPermalink "host" $host
+-}}
+<script type="application/json" id="term-data">{{ $data | jsonify | safeJS }}</script>
+<div class="term" role="dialog" aria-label="Terminal" hidden>
+  <div class="term-bar">
+    <span>guest@{{ $host }}: ~</span>
+    <button type="button" class="term-close" aria-label="Close terminal">esc</button>
+  </div>
+  <div class="term-out" aria-live="polite"></div>
+  <form class="term-line">
+    <label for="term-input" class="term-prompt">guest@sg:~$</label>
+    <input id="term-input" class="term-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+  </form>
+</div>

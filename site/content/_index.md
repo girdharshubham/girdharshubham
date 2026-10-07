@@ -1,0 +1,56 @@
+---
+# Everything on the home page that isn't in another folder lives here.
+title: Shubham Girdhar
+role: Senior Platform & Site Reliability Engineer
+description: Senior platform and site reliability engineer. Multi-cloud control planes on Crossplane, GPU infrastructure and LLM serving on Kubernetes.
+location: Remote
+
+# Photo in the header, and the image shown when the site is shared (Slack, LinkedIn...).
+# Tab icons are static/favicon.png, static/favicon-32.png and static/apple-touch-icon.png.
+avatar: images/avatar.jpg
+shareImage: images/share.jpg
+
+# Flip to false to hide the "Open to new roles" badge (also changes the YAML card).
+openToWork: true
+
+# Wrap a phrase in *asterisks* to highlight it in the accent color.
+headline: I build the platforms *AI and multi-cloud products* run on, and I'm having a blast.
+tagline: Hand me an ambiguous, high-stakes problem and a whiteboard, and I'm a happy engineer.
+
+links:
+  github: https://github.com/girdharshubham
+  linkedin: ""        # paste your LinkedIn URL to show it
+
+stats:
+  - value: 7+
+    label: Years in platform & SRE
+  - value: 40+
+    label: Platform deployments at my current job
+  - value: "3"
+    label: Clouds, one control plane
+  - value: 36+
+    label: Merged PRs to zio-http
+
+# The YAML card in the hero.
+manifest:
+  role: Senior Platform / SRE      # shorter title for the card
+  experience: 7y+
+  clouds: [aws, gcp, azure]
+  focus: [llm-serving-and-training-infra, multi-cloud-control-planes, kubernetes-operators]
+  languages: [go, python, scala, java]
+
+# Section headings on the home page.
+headings:
+  focus: What I love working on
+  experience: Places I've shipped things
+  openSource: Code I've sent upstream
+  writing: Things I've been thinking about
+  contact: Let's build something
+
+contact:
+  blurb: Hiring for platform, SRE or AI infrastructure? Wrestling with a gnarly multi-cloud or GPU problem? Or just want to geek out about Kubernetes? Drop me a note, I'd love to hear from you.
+  # Free key from https://web3forms.com, created with your Proton address. Safe to publish.
+  web3formsKey: YOUR_WEB3FORMS_ACCESS_KEY
+---
+
+Hi! I'm Shubham, a platform and site reliability engineer who has spent 7+ years making AWS, GCP and Azure behave. At Akka I led the redesign of our control plane on Crossplane, which now serves enterprise customers in 40+ regions. I also own the platform side of our AI inference and fine-tuning product, and got to take it from a scrappy proof of concept all the way to production.

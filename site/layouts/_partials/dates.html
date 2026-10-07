@@ -1,0 +1,6 @@
+{{- /* "2023-04" becomes "Apr 2023"; a missing end becomes "Present" */ -}}
+{{- $fmt := "Jan 2006" -}}
+{{- $start := time.AsTime (printf "%s-01" (string .Params.start)) | time.Format $fmt -}}
+{{- $end := "Present" -}}
+{{- with .Params.end }}{{ $end = time.AsTime (printf "%s-01" (string .)) | time.Format $fmt }}{{ end -}}
+{{- printf "%s - %s" $start $end -}}

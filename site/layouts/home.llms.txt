@@ -1,0 +1,25 @@
+{{- $p := .Params -}}
+{{- $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse -}}
+# {{ site.Title }}
+
+> {{ .Description }}
+
+{{ .RawContent | strings.TrimSpace }}
+
+- Location: {{ $p.location }}
+- Status: {{ cond $p.openToWork "Open to new roles" "Not actively looking" }}
+- Contact: use the form at {{ .Permalink }}#contact
+{{- range $k, $v := $p.links }}{{ with $v }}
+- {{ index (dict "github" "GitHub" "linkedin" "LinkedIn") $k | default (title $k) }}: {{ . }}{{ end }}{{ end }}
+
+## Profile
+
+- [Full profile]({{ "llms-full.txt" | absURL }}): summary, focus areas, complete work history, open-source contributions and skills as one Markdown file
+- [Website]({{ .Permalink }}): the same content as HTML
+{{- with $posts }}
+
+## Writing
+{{ range . }}
+- [{{ .Title }}]({{ (.OutputFormats.Get "md").Permalink }}): {{ .Description | default (.Summary | plainify | truncate 160) }}
+{{- end }}
+{{- end }}

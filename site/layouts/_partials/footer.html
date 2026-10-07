@@ -1,0 +1,16 @@
+{{- $first := index (sort (site.GetPage "/experience").Pages "Params.start") 0 -}}
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© {{ now.Year }} {{ site.Title }}</p>
+    <p class="footer-fun muted">
+      <span class="uptime" data-since="{{ $first.Params.start }}" title="Time since my first job in tech">up since {{ partial "dates.html" $first | replaceRE ` - .*` "" }}</span>
+      / SLO 99.9%
+      / <button type="button" class="term-hint">press <kbd>`</kbd></button>
+    </p>
+    <p class="muted">
+      Built with Hugo /
+      <a href="{{ "llms.txt" | relURL }}">llms.txt</a>
+      {{- with site.Home.OutputFormats.Get "rss" }} / <a href="{{ .RelPermalink }}">RSS</a>{{ end }}
+    </p>
+  </div>
+</footer>

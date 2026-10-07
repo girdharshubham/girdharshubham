@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section class="section page-top">
+  <div class="wrap narrow">
+    <header class="section-head">
+      <p class="section-kicker">Writing</p>
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    </header>
+    {{ with .Pages.ByDate.Reverse }}
+      {{ partial "post-list.html" . }}
+    {{ else }}
+      <p class="muted">Nothing published yet.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

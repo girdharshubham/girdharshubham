@@ -1,0 +1,17 @@
+{{ define "main" }}
+<article class="section page-top">
+  <div class="wrap narrow">
+    <header class="post-head">
+      <p class="section-kicker"><a href="{{ "blog/" | relURL }}">Writing</a></p>
+      <h1 class="page-title">{{ .Title }}</h1>
+      <p class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        / {{ .ReadingTime }} min read
+        {{- with .OutputFormats.Get "md" }} / <a href="{{ .RelPermalink }}">View as Markdown</a>{{ end }}
+      </p>
+      {{ with .Params.tags }}<ul class="tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,5 @@
+{{- /* Current roles (no end date) first, newest start first; then past roles by end date. */ -}}
+{{- $all := (site.GetPage "/experience").Pages -}}
+{{- $current := sort (where $all "Params.end" "==" nil) "Params.start" "desc" -}}
+{{- $past := sort (where $all "Params.end" "!=" nil) "Params.end" "desc" -}}
+{{- return ($current | append $past) -}}
