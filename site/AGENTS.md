@@ -33,8 +33,9 @@ uptime since the first job in the footer; DevTools console greeting; CrashLoopBa
 blinking cursor, stat count-up. All motion respects prefers-reduced-motion.
 
 Rules:
-- Typography follows practicaltypography.com: Charter body text, curly quotes and apostrophes. Type
-  plain ' and " in Markdown; Hugo's typographer curls them (front matter text needs `| .RenderString`).
+- Fonts: IBM Plex Sans and IBM Plex Mono (a serif/Practical Typography restyle was tried and rejected).
+  Curly quotes and apostrophes: type plain ' and " in Markdown; Hugo's typographer curls them
+  (front matter text needs `| .RenderString`).
 - No em/en dashes, ellipsis characters, arrow glyphs or middle-dot separators in copy (the typographer
   is configured not to create them). Use commas, colons, periods or " / ".
 - Never put the phone number, personal email, or the Proton address on the site. The contact form
