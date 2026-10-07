@@ -371,12 +371,12 @@
 
     var data = Object.fromEntries(new FormData(form));
     if (!data.access_key || data.access_key.indexOf("YOUR_") === 0) {
-      setStatus("The contact form isn't configured yet. Add a Web3Forms access key.", "err");
+      setStatus("The contact form isn\u2019t configured yet. Add a Web3Forms access key.", "err");
       return;
     }
     if (data.botcheck) return; // honeypot ticked: silently drop
     if (form.querySelector(".h-captcha") && !data["h-captcha-response"]) {
-      setStatus("Please tick the \"I am human\" box first.", "err");
+      setStatus("Please tick the \u201cI am human\u201d box first.", "err");
       return;
     }
     delete data.botcheck;
@@ -397,7 +397,7 @@
       .then(function (r) {
         if (r.ok) {
           form.reset();
-          setStatus("Thanks! Your message is on its way. I'll reply soon.", "ok");
+          setStatus("Thanks! Your message is on its way. I\u2019ll reply soon.", "ok");
         } else {
           setStatus((r.json && r.json.message) || "Something went wrong. Please try again.", "err");
         }

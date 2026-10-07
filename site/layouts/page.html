@@ -3,7 +3,7 @@
   <div class="wrap narrow">
     <header class="post-head">
       <p class="section-kicker"><a href="{{ "blog/" | relURL }}">Writing</a></p>
-      <h1 class="page-title">{{ .Title }}</h1>
+      <h1 class="page-title">{{ .Title | .RenderString }}</h1>
       <p class="post-meta">
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
         / {{ .ReadingTime }} min read

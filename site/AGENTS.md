@@ -33,8 +33,10 @@ uptime since the first job in the footer; DevTools console greeting; CrashLoopBa
 blinking cursor, stat count-up. All motion respects prefers-reduced-motion.
 
 Rules:
-- Plain ASCII punctuation only in copy: no em/en dashes, curly quotes, ellipsis or arrow characters, no
-  middle-dot separators (use commas, colons, periods or " / "). Hugo's typographer is disabled for this.
+- Typography follows practicaltypography.com: Charter body text, curly quotes and apostrophes. Type
+  plain ' and " in Markdown; Hugo's typographer curls them (front matter text needs `| .RenderString`).
+- No em/en dashes, ellipsis characters, arrow glyphs or middle-dot separators in copy (the typographer
+  is configured not to create them). Use commas, colons, periods or " / ".
 - Never put the phone number, personal email, or the Proton address on the site. The contact form
   (Web3Forms, delivering to hello@girdharshubham.com) is the only contact channel.
 - Don't name employers' customers or disclose deal/revenue figures. Describe them generically.

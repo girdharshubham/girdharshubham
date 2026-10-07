@@ -31,6 +31,12 @@ disableKinds = ["taxonomy", "term"]
   section = ["html", "rss"]
   page = ["html", "md"]
 
-# Keep text exactly as typed: no automatic curly quotes, en/em dashes or ellipses.
+# Curly quotes and apostrophes (Practical Typography), but no automatic dashes, ellipses or
+# angle quotes: those stay exactly as typed.
 [markup.goldmark.extensions.typographer]
-  disable = true
+  disable = false
+  enDash = "--"
+  emDash = "---"
+  ellipsis = "..."
+  leftAngleQuote = "&lt;&lt;"
+  rightAngleQuote = "&gt;&gt;"

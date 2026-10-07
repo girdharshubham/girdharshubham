@@ -11,7 +11,7 @@
       </p>
       <h1>{{ $p.headline | .RenderString }}</h1>
       <div class="lede">{{ .Content }}</div>
-      {{ with $p.tagline }}<p class="lede lede-sub">{{ . }}</p>{{ end }}
+      {{ with $p.tagline }}<p class="lede lede-sub">{{ . | $.RenderString }}</p>{{ end }}
       <div class="hero-actions">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
         {{ with $p.links.booking }}
@@ -43,7 +43,7 @@
   <div class="wrap">
     <header class="section-head">
       <p class="section-kicker">01 / Focus</p>
-      <h2>{{ $h.focus | default "What I do best" }}</h2>
+      <h2>{{ $h.focus | default "What I do best" | $.RenderString }}</h2>
     </header>
     <div class="cards">
       {{ range (site.GetPage "/focus").Pages.ByWeight }}
@@ -62,7 +62,7 @@
   <div class="wrap">
     <header class="section-head">
       <p class="section-kicker">02 / Experience</p>
-      <h2>{{ $h.experience | default "Where I've worked" }}</h2>
+      <h2>{{ $h.experience | default "Where I've worked" | $.RenderString }}</h2>
     </header>
     <ol class="timeline">
       {{ range partial "experience-pages.html" . }}
@@ -91,7 +91,7 @@
   <div class="wrap">
     <header class="section-head">
       <p class="section-kicker">03 / Open source</p>
-      <h2>{{ $h.openSource | default "Upstream contributions" }}</h2>
+      <h2>{{ $h.openSource | default "Upstream contributions" | $.RenderString }}</h2>
     </header>
     <div class="oss">
       {{ range (site.GetPage "/open-source").Pages.ByWeight }}
@@ -112,7 +112,7 @@
     <header class="section-head section-head-row">
       <div>
         <p class="section-kicker">04 / Writing</p>
-        <h2>{{ $h.writing | default "Recent posts" }}</h2>
+        <h2>{{ $h.writing | default "Recent posts" | $.RenderString }}</h2>
       </div>
       <a class="more" href="{{ "blog/" | relURL }}">All posts</a>
     </header>
@@ -138,8 +138,8 @@
   <div class="wrap contact-grid">
     <div>
       <p class="section-kicker">0{{ add $n 1 }} / Contact</p>
-      <h2>{{ $h.contact | default "Let's talk" }}</h2>
-      <p class="lede">{{ $p.contact.blurb }}</p>
+      <h2>{{ $h.contact | default "Let's talk" | $.RenderString }}</h2>
+      <p class="lede">{{ $p.contact.blurb | $.RenderString }}</p>
       {{ with $p.links.booking }}
       <div class="contact-book">
         <p>Rather talk it through? Grab a slot on my calendar.</p>
